@@ -1,19 +1,16 @@
-import SendbirdApp from '@sendbird/uikit-react/App';
-import '@sendbird/uikit-react/dist/index.css';
+import { Router, Route, Routes } from "react-router";
 import "./App.css";
+import Protect from "./helpers/Protect";
+import Index from "./index/Index";
+import Auth from "./auth/Auth";
 
 const App = () => {
-    const appId = import.meta.env.VITE_APP_ID;
-    const userId = import.meta.env.VITE_USER_ID;
-
-    return (
-        <div className="App">
-            <SendbirdApp
-                appId={appId}   // Use environment variable for Sendbird application ID
-                userId={userId} // Use environment variable for user ID
-            />
-        </div>
-    );
+  return (
+    <Routes>
+      <Route index element={<Protect element={<Index />} />} exact />
+      <Route path="/login" element={<Auth />} />
+    </Routes>
+  );
 };
 
 export default App;

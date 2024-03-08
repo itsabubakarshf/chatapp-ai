@@ -1,9 +1,14 @@
 const axios = require('axios');
 const express = require('express');
+const cors=require('cors');
 require('dotenv').config();
 
 const app = express();
 app.use(express.json());
+var corsOptions={
+    origin: '*'
+}
+app.use(cors(corsOptions));
 
 const API_TOKEN = process.env.API_TOKEN;
 const APPLICATION_ID = process.env.APPLICATION_ID;
